@@ -18,9 +18,7 @@ const Left = ({ subject }) => {
   const handleSubject = async (clickedSubject) => {
     await dispatch(setSelectedSubject(clickedSubject));
     console.log(clickedSubject, 'clickedSubject is');
-    // setTimeout(() => {
     navigate(`/chapters/${clickedSubject}`);
-    // }, 2000);
   };
 
   return (

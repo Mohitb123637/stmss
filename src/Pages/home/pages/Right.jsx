@@ -1,14 +1,22 @@
 // import React from 'react'
 import { CiBellOn, CiSearch } from 'react-icons/ci';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { FaBell } from 'react-icons/fa';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const Right = () => {
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
   };
+  const toggleProfile = () => {
+    setShowProfile(!showProfile);
+  };
   const notificationCount = 9;
+  const user = useSelector((state) => state.auth.user.user);
+  console.log(user);
 
   return (
     <>
@@ -27,6 +35,7 @@ const Right = () => {
           src="https://t4.ftcdn.net/jpg/02/44/43/69/360_F_244436923_vkMe10KKKiw5bjhZeRDT05moxWcPpdmb.jpg"
           alt=""
           className="w-10 h-10 mx-4 cursor-pointer rounded-full"
+          onClick={toggleProfile}
         />
         {notificationCount >= 9 && (
           <div className="absolute top-0 right-5 mt-2 -mr-1 bg-red-500 rounded-full px-2 py-1 text-xs text-white font-bold">
@@ -36,45 +45,69 @@ const Right = () => {
 
         {showNotifications && (
           <div
-            className="absolute top-0 right-0 mt-16 mr-4 z-10  shadow-lg rounded-lg p-4 overflow-y-auto"
+            className="absolute top-0 right-0 mt-16 mr-4 z-10 shadow-lg rounded-lg p-4 overflow-y-auto"
             style={{
               width: '450px',
               height: '80vh',
               backgroundColor: 'rgb(244, 245, 250)',
             }}
           >
-            <h3 className=" text-2xl text-gray-600 font-semibold my-5">
-              Notifications
+            <h3 className="text-2xl text-gray-600 font-semibold my-5 flex items-center">
+              <FaBell className="mr-2" /> Notifications {/* Adding bell icon */}
             </h3>
             <div className="notification-lists flex flex-col">
               <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
                 Notification Lorem, ipsum dolor sit amet consectetur adipisicing
                 elit. Veniam laudantium debitis voluptas!
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                Notification Lorem, ipsum dolor sit amet
+            </div>
+          </div>
+        )}
+        {showProfile && (
+          <div
+            className="absolute top-0 right-0 mt-16 mr-4 z-10 shadow-lg rounded-lg p-4 overflow-y-auto"
+            style={{
+              width: '450px',
+              height: '80vh',
+              backgroundColor: 'rgb(244, 245, 250)',
+            }}
+          >
+            <h3 className="text-2xl text-gray-600 font-semibold my-5">
+              Profile
+            </h3>
+            <div className="flex flex-col items-center">
+              <img
+                src="https://t4.ftcdn.net/jpg/02/44/43/69/360_F_244436923_vkMe10KKKiw5bjhZeRDT05moxWcPpdmb.jpg"
+                alt=""
+                className="w-32 h-32 rounded-full mr-4 mb-4"
+              />
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">First Name</h1>
+                <h1 className="text-gray-500">{user.firstName}</h1>
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                {' '}
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus, assumenda.
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">Last Name</h1>
+                <h1 className="text-gray-500">{user.lastName}</h1>
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                Notification Lorem, ipsum dolor sit amet consectetur
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">Email</h1>
+                <h1 className="text-gray-500">{user.email}</h1>
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                Notification Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Veniam laudantium debitis voluptas!
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">Date of birth</h1>
+                <h1 className="text-gray-500">{user.dob}</h1>
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                Notification Lorem, ipsum dolor sit amet consectetur !
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">Class</h1>
+                <h1 className="text-gray-500">{user.className}th</h1>
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                Notification Lorem, ipsum dolor sit amet !
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">Stream</h1>
+                <h1 className="text-gray-500">{user.stream}</h1>
               </div>
-              <div className="notification-item my-1 p-4 bg-blue-300 rounded-lg min-h-10 hau">
-                Notification Lorem, ipsum dolor sit amet consectetur adipisicing
-                elit. Veniam laudantium debitis voluptas!
+              <div className="flex w-3/4 my-3 justify-between">
+                <h1 className="text-gray-600">Contact Number</h1>
+                <h1 className="text-gray-500">{user.contact}</h1>
               </div>
             </div>
           </div>
