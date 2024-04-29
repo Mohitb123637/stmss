@@ -22,8 +22,7 @@ export const apiErrorResponse = (error) => {
 };
 
 const instance = axios.create({
-  baseURL: 'https://stms-api.onrender.com/api',
-  // withCredentials: true
+  baseURL: import.meta.env.VITE_STMS_BASE_URL,
 });
 
 instance.interceptors.request.use(
@@ -56,7 +55,7 @@ instance.interceptors.response.use(
           const refreshToken = localStorage.getItem('refreshToken');
           try {
             const refreshData = await axios.post(
-              'https://stms-api.onrender.com/api/auth/refreshToken',
+              ` ${import.meta.env.VITE_STMS_BASE_URL}/auth/refreshToken`,
               {
                 refreshToken,
               },
@@ -75,7 +74,6 @@ instance.interceptors.response.use(
               );
 
               return instance(originalRequest);
-              // eslint-disable-next-line no-else-return
             } else {
               localStorage.removeItem('auth');
               localStorage.removeItem('userAccessToken');

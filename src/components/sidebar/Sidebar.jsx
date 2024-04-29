@@ -10,7 +10,7 @@ import {
 import { FaRegComment } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { IconContext } from 'react-icons';
-import { logoutUser } from '../../store/auth/authActions';
+import { logoutUser } from '../../../store/auth/authActions';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Sidebar = () => {
   const isLogin =
     location.pathname.includes('/login') ||
     location.pathname.includes('/forgot-password') ||
+    location.pathname.includes('/verify') ||
     location.pathname.includes('/register') ||
     location.pathname.includes('/startExam/') ||
     location.pathname.includes('/assignments/') ||

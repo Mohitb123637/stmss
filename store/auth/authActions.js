@@ -127,3 +127,21 @@ export const updatePassword = createAsyncThunk(
     }
   }
 );
+export const verification = createAsyncThunk(
+  'user/verify',
+  async ({ otp, email }, { rejectWithValue }) => {
+    try {
+      const response = await axiosConfig.post('/auth/verifyEmail', {
+        otp,
+        email,
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue({
+        error: error.response.data
+          ? error.response.data.message
+          : error.message,
+      });
+    }
+  }
+);

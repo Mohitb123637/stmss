@@ -45,12 +45,17 @@ const Left = ({ chapter }) => {
         ? chapter.chapters.map((chapter, i) => (
             <>
               <div className="w-full  h-auto bg-gray-300 rounded-2xl shadow-md p-4 md:p-8 mt-6">
-                <div className="flex flex-col md:flex-row justify-center md:justify-between items-center cursor-pointer text-black">
+                <div
+                  className="flex flex-col md:flex-row justify-center md:justify-between items-center cursor-pointer text-black"
+                  onClick={() => {
+                    handleChapter(chapter.chapterId);
+                  }}
+                >
                   <div
                     className="flex items-center mb-4  md:mb-0"
-                    onClick={() => {
-                      handleChapter(chapter.chapterId);
-                    }}
+                    // onClick={() => {
+                    //   handleChapter(chapter.chapterId);
+                    // }}
                   >
                     <img
                       src={chapImage[i]}

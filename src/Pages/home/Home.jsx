@@ -17,8 +17,6 @@ const Home = () => {
   useEffect(() => {
     if (!user) {
       navigate('/login', { successLogin: true });
-    } else if (user.user === null) {
-      navigate('/login', { successLogin: true });
     }
   }, [navigate, user]);
 

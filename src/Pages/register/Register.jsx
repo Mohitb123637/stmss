@@ -53,8 +53,11 @@ const Register = () => {
         .unwrap()
         .then(() => {
           e.target.reset();
-          // successToast('User Registered Successfully');
-          navigate('/login');
+          console.log(
+            'Navigating to VerifyOtp with email:',
+            emailRef.current.value
+          );
+          navigate('/verify', { state: { email: emailRef.current.value } });
         })
         .catch((errorData) => {
           return errorData;

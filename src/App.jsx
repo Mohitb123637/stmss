@@ -26,7 +26,7 @@
 
 import './App.css';
 import Home from './Pages/home/Home';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar/Sidebar';
 import Subject from './Pages/subject/Subject';
 import Topic from './Pages/topic/Topic';
 import Summary from './Pages/Summary/Summary';
@@ -39,6 +39,7 @@ import ResultPage from './Pages/assignment/Result';
 import Report from './Pages/Report/Report';
 import Register from './Pages/register/Register';
 import ForgetPassword from './Pages/Forgetpassword/ForgetPassword';
+import VerifyOtp from './Pages/register/verifyOtp';
 
 function App() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
   const isLoginPage =
     location.pathname === '/login' ||
     location.pathname === '/register' ||
+    location.pathname === '/verify' ||
     location.pathname === '/forgot-password';
 
   return (
@@ -66,6 +68,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgetPassword />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify" element={<VerifyOtp />} />
       </Routes>
     </div>
   );

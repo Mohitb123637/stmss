@@ -45,9 +45,12 @@ const ForgetPassword = () => {
     dispatch(forgetPassword({ email }));
     setEmailSent(true);
   };
-  const resetId = useSelector((state) => state.auth.resetId.data.id);
-  console.log(resetId);
 
+  const resetId = useSelector((state) =>
+    state.auth.resetId ? state.auth.resetId.data.id : null
+  );
+
+  console.log(resetId);
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
     const otpValue = otp.join('');
@@ -60,7 +63,9 @@ const ForgetPassword = () => {
   return (
     <div className="flex items-center flex-col justify-center h-screen">
       <div className="w-full max-w-md">
-        <h2 className="text-3xl font-semibold mb-6">Forget Password</h2>
+        <h2 className="text-3xl text-gray-600 font-semibold mb-6">
+          Forget Password
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <input
@@ -76,14 +81,19 @@ const ForgetPassword = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-3 px-6 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full bg-gray-800  text-white py-3 px-6 rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
           >
             {emailSent ? 'Email Sent' : 'Send'}
           </button>
+          {emailSent && (
+            <p className="text-red-500 mt-2 font-semibold">
+              OTP has been sent to the email address.
+            </p>
+          )}
         </form>
       </div>
 
-      <div className=" mt-5">
+      <div className="w-full max-w-md mt-10">
         <form onSubmit={handleOtpSubmit} className="space-y-6">
           <input
             type="password"
@@ -94,7 +104,7 @@ const ForgetPassword = () => {
             required
             className="mt-1 block w-full h-12 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
           />
-          <h1 className="mb-5">Enter Your OTP</h1>
+          <h1 className=" my-5 text-2xl text-gray-600">Enter Your OTP</h1>
           <div className="flex justify-center">
             {otp.map((digit, index) => (
               <input
@@ -110,7 +120,7 @@ const ForgetPassword = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-3 px-6 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-full bg-gray-800 text-white py-3 px-6 rounded-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
           >
             Submit
           </button>

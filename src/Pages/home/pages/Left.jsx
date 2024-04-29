@@ -28,10 +28,12 @@ const Left = ({ subject }) => {
       <div className="w-full  bg-gray-300 rounded-2xl shadow-md p-4 md:p-8 mb-8 md:mb-0">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex flex-col items-center md:items-start">
-            <h4 className="text-xl font-semibold text-gray-800 mb-2">
+            <h4 className="text-2xl font-semibold text-gray-800 mb-2">
               Hello {user.firstName}
             </h4>
-            <p className="text-sm text-gray-600">its Good to see you again</p>
+            <p className="text-lg text-gray-600">
+              its Good to see you again 😊
+            </p>
           </div>
           <img
             src="https://png.pngtree.com/png-clipart/20230617/original/pngtree-small-boy-coloring-page-outline-sketch-drawing-vector-png-image_9188925.png"
@@ -47,10 +49,13 @@ const Left = ({ subject }) => {
                 key={index}
                 className="w-full h-auto bg-gray-300 rounded-2xl shadow-md p-4 md:p-8 cursor-pointer mt-6"
               >
-                <div className="flex flex-col md:flex-row justify-center md:justify-between items-center text-black">
+                <div
+                  className="flex flex-col md:flex-row justify-center md:justify-between items-center text-black"
+                  onClick={() => handleSubject(subject.subjectId)}
+                >
                   <div
                     className="flex items-center mb-4 md:mb-0"
-                    onClick={() => handleSubject(subject.subjectId)}
+                    // onClick={() => handleSubject(subject.subjectId)}
                   >
                     <img
                       src={subImage[index]}
